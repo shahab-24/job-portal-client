@@ -2,10 +2,14 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext/AuthContext";
 import lottieLoginData from "../assets/login.json"
 import Lottie from "lottie-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
 	const {loginUser} = useContext(AuthContext)
+  const location = useLocation();
+  const navigate = useNavigate(); 
+  const from = location.state || "/"
 
 	
 	const handleLogin=(e)=> {
@@ -18,7 +22,11 @@ const Login = () => {
 		// console.log(user)
 
 		loginUser(email, password)
-		.then(result => console.log(result.user))
+		.then(result => {
+      console.log(result.user)
+      navigate(from)
+    })
+
 		.catch(error => console.log(error.message))
 
 

@@ -14,7 +14,7 @@ const HotJobs = () => {
 		<div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-4 p-2 flex-wrap border-2 border-orange-500">
 				{
-					jobs.map(job => <JobsCard key={jobs._id} jobs={job}></JobsCard> )
+					jobs.slice(0,8).map(job => <JobsCard key={jobs._id} jobs={job}></JobsCard> )
 				}
 			</div>
 			
