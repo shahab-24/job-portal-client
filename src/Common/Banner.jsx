@@ -13,14 +13,14 @@ const Banner = () => {
   
 
       src={team3}
-      className="max-w-sm w-72 rounded-3xl rounded-bl-none border-l-4 border-b-4" />
+      className="max-w-sm w-72 rounded-3xl rounded-bl-none border-l-4 border-b-4 border-blue-400" />
 
 <motion.img animate={{x: [150, 100, 150]}}
   transition={{duration:10, delay: 2, repeat: Infinity}}
   
 
       src={team4}
-      className="max-w-sm w-72 rounded-3xl rounded-bl-none border-l-4 border-b-4" />
+      className="max-w-sm w-72 rounded-3xl rounded-bl-none border-l-4 border-b-4 border-blue-400" />
       
 
       
