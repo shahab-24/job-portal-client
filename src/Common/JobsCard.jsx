@@ -7,7 +7,7 @@ const JobsCard = ({jobs}) => {
 	console.log(jobs)
 	return (
 		<div>
-			<div className="card bg-base-100 border-2 border-red-400 shadow-xl h-[450px]">
+			<div className="card bg-base-100 border border-cyan-400 shadow-xl  h-[450px]">
         <div className='flex gap-2 items-center justify-center p-2'>
         <figure>
     <img className='w-[80px]'

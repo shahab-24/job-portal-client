@@ -11,9 +11,11 @@ const Navbar = () => {
 
       </li>
       <li>        <NavLink to="/myApplication">My Applications</NavLink></li>
+      <li>        <NavLink to="/addJob">Add Job</NavLink></li>
+      <li>        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink></li>
       
     </>
-    
+     
   );
 
   const handleSignOut = () => {

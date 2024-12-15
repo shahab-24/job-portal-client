@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const JobApply = () => {
   const [jobApplication, setJobApplications] = useState();
@@ -9,7 +10,7 @@ const JobApply = () => {
 const {user} = useAuth()
   const { id } = useParams();
 
-  console.log(id);
+  // console.log(id);
 
   const handleJobApply = (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ const {user} = useAuth()
     const form = e.target;
     const linkedin = form.linkedin.value;
     const github = form.github.value;
-    const resume = form.resume.vlaue;
+    const resume = form.resume.value;
 
     const jobApplication = {
       job_id: id,
@@ -26,33 +27,35 @@ const {user} = useAuth()
       github,
       resume,
     };
-    console.log(jobApplication);
+    // console.log(jobApplication);
 
-    form.reset()
+  
 
-    fetch(`http://localhost:3000/job-applications`,{
-		method: "post",
+    fetch("http://localhost:3000/job-applications",{
+		method: "POST",
 		headers: {
 			"content-type" : "application/json"
-
 		},
 		body: JSON.stringify(jobApplication)
 		
-
-		
-		
-	
 	})
       .then((res) => res.json())
       .then((data) => {
-		if(data.insertedId){
-			alert('job applied succesfully')
-			setJobApplications(data);
+        console.log(data)
       
-		}
+        // if (data.insertedId) {
+        //   Swal.fire({
+        //     position: "top-end",
+        //     icon: "success",
+        //     title: "Your Job has been applied successfully",
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //   });
+        // }
         
 
       });
+    
   };
   return (
     <div className="card bg-base-100 w-full  shadow-2xl">
