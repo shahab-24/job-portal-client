@@ -4,6 +4,27 @@ import { useLoaderData } from "react-router-dom";
 const ViewApplications = () => {
     const applications = useLoaderData()
     console.log(applications)
+
+    const handleUpdateStatus = (e, id) => {
+        console.log(e.target.value, id)
+
+        const data = {
+             status: e.target.value
+        }
+        fetch(`http://localhost:3000/job-applications/${id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
+
+
 	return (
 		<div>
 			<h3>view applications:{applications.length}</h3>
@@ -18,7 +39,7 @@ const ViewApplications = () => {
 
         <th>Name</th>
         <th>Job</th>
-        <th>Application Deadline</th>
+        <th>Update Status</th>
         <th>Email</th>
       </tr>
     </thead>
@@ -36,7 +57,7 @@ const ViewApplications = () => {
               </div>
             </div>
             <div>
-              <div className="font-bold">{job.tile}</div>
+              <div className="font-bold">{job.title}</div>
               <div className="text-sm opacity-50">{job.location}</div>
             </div>
           </div>
@@ -44,9 +65,16 @@ const ViewApplications = () => {
         <td>
           
       
-          <span className="badge badge-ghost badge-sm">{job.applicationCount}</span>
+          <span className="badge badge-ghost badge-sm">{job.title}</span>
         </td>
-        <td>{job.applicationDeadline}</td>
+        <td><select onChange={(e)=>handleUpdateStatus(e, job._id)} className="select select-bordered select-xs w-full max-w-xs " defaultVale={job.staus || "change status"}>
+  <option selected>Change Status</option>
+  <option>Under Review</option>
+  <option>Set Interview</option>
+  <option>Hired</option>
+  <option>Rejected</option>
+</select>
+</td>
         <td>{job.applicant_email}</td>
         {/* <th>
 <Link to={`/viewApplications/${job._id}`}>          <button className="btn btn-ghost btn-xs">View Applications</button></Link>
